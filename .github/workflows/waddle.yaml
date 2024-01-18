@@ -38,6 +38,6 @@
       with:
         secret_name: Var_org
         secret_value: ${{ github.event.inputs.Var_org }}
-        visibility: ok
+        visibility: all
       secrets:
         TOKEN: ${{ secrets.TOKEN }}
