@@ -1,0 +1,43 @@
+  name: Waddle
+  on:
+    workflow_dispatch:
+      inputs:
+        Var:
+          description: Creation d'une variable
+          type: string
+          required: true
+          default: Flo
+        Var_env:
+          description: Creation d'une variable env
+          type: string
+          required: true
+          default: Flo
+        Var_org:
+          description: Creation d'une variable org
+          type: string
+          required: true
+          default: Flo
+  jobs:
+    create_variable:
+      uses: aaurizon/action/.github/workflows/gh-set-secret.yaml@v1
+      with:
+        secret_name: Var_norm
+        secret_value: ${{ github.event.inputs.Prenom }}
+      secrets:
+        TOKEN: ${{ secrets.TOKEN }}
+    create_variable_env:
+      uses: aaurizon/action/.github/workflows/gh-set-env-secret.yaml@v1
+      with:
+        environment: deployment
+        secret_name: Var_env
+        secret_value: ${{ github.event.inputs.Var_env }}
+      secrets:
+        TOKEN: ${{ secrets.TOKEN }}
+    create_variable_org:
+      uses: aaurizon/action/.github/workflows/gh-set-org-secret.yaml@v1
+      with:
+        secret_name: Var_org
+        secret_value: ${{ github.event.inputs.Var_org }}
+        visibility: ok
+      secrets:
+        TOKEN: ${{ secrets.TOKEN }}
